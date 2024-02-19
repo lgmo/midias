@@ -1,6 +1,5 @@
 from uuid import uuid4
 from fastapi import UploadFile
-import librosa
 
 
 class Video:
@@ -19,14 +18,3 @@ class Video:
             content = await file.read()
             buffer.write(content)
         return file_id 
-
-    async def get_silence_time_stamps(self, file_id: uuid4):
-        path = self.file_path(file_id)
-        audio, sr = librosa.load(path, sr=8000, mono=True)
-        print(audio.shape, sr)
-        res = librosa.effects.split(audio, top_db=10000)
-        print(res)
-
-
-
-
