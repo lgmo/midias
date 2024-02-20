@@ -1,17 +1,13 @@
 Projeto de mídias.
 
-## Requirements
+## Requisitos
 
-pyAudioAnalysis
-eyed3
-numpy
-pydub
-scipy
-scikit-learn
-hmmlearn
-imblearn
-tqdm
-plotly
-python-multipart
-fastapi
-pydantic
+docker
+
+## Uso
+
+```sh
+docker compose up
+```
+
+Servidor rodando em http://localhost:8080
