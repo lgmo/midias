@@ -1,5 +1,6 @@
+from typing import Annotated
 from uuid import UUID
-from fastapi import APIRouter, File, UploadFile
+from fastapi import APIRouter, File, Query, UploadFile
 from starlette import status
 
 from models.audio import Audio
@@ -18,5 +19,9 @@ def video_router(video_model: Video, audio_model: Audio):
     ):
         file_id = UUID(file_id) 
         return await audio_model.detect_silence(file_id)
+
+    @router.patch("/{file_id}/jump-cut")
+    async def download_file(file_id: str, silence_segments: list[list[float]] = []):
+        return await video_model.jump_cut(file_id, silence_segments)
 
     return router
